@@ -1,30 +1,21 @@
-console.log('#3. JavaScript homework example file')
+console.log(`#1. Створіть об'єкт userObj, що описує людину.`);
 
-/*
- * #1
- *
- * Створіть об'єкт userObj, що описує людину.
- *
- * Наступні поля обов'язкові:
- * firstName - будь-яке ім'я, рядок
- * lastName - будь-яке прізвище, рядок
- * age - будь-який вік, число
- */
+const userObj = {
+    firstName: 'Oleksandr',
+    lastName: 'Sidelnikov',
+    age: 37,
+    level: 'Junior',
 
-// console.log(userObj)
+    fullName() {
+        return `${this.firstName} ${this.lastName}`;
+    },
+};
 
-/*
- * #2
- *
- * Для об'єкта з п.1 створіть метод fullName(), що повертає коректне повне ім'я, яке є конкатенацією firstName та lastName через пробіл.
+console.log(userObj);
 
- * Наприклад:
- * userObj.firstName ← 'John'
- * userObj.lastName  ← 'Smith'
- * userObj.fullName() → 'John Smith'.
- */
+console.log(`#2. Для об'єкта з п.1 створіть метод fullName(), що повертає коректне повне ім'я, яке є конкатенацією firstName та lastName через пробіл.`);
 
-// console.log(userObj.fullName()) // John Smith
+console.log(userObj.fullName());
 
 /*
  * #3
@@ -36,53 +27,70 @@ console.log('#3. JavaScript homework example file')
  * При виконанні завдання не використовуйте оператор if, потрібен розв'язок із логічним оператором ||.
  */
 
-// console.log(defUpperStr('My text')) // MY TEXT
-// console.log(defUpperStr())             // DEFAULT TEXT
+console.log(`#3. Функція defUpperStr('My text') повертає текст, перетворений у верхній регістр, тобто: defUpperStr('My text') → 'MY TEXT'.`);
 
-/*
- * #4
- *
- * Створіть функцію evenFn(n), яка приймає параметром число - кількість ітерацій циклу, тобто for 0..n.
- * Функція повинна повернути масив, що складається тільки з парних значень, які генеруються в циклі.
- *
- * Причому:
- * 0 не повинен потрапляти до результуючого масиву,
- * цикл має працювати до n включно,
- * дозволено тільки оператор for.
- *
- * Наприклад:
- * evenFn(10) → [2, 4, 6, 8, 10]
- * evenFn(15) → [2, 4, 6, 8, 10, 12, 14]
- * evenFn(20) → [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
- */
+function defUpperStr(str) {
+     return (str || 'default text').toUpperCase();
+};
 
-// console.log(evenFn(10)) // [2, 4, 6, 8, 10]
-// console.log(evenFn(15)) // [2, 4, 6, 8, 10, 12, 14]
-// console.log(evenFn(20)) // [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+console.log(defUpperStr('My text'));
+console.log(defUpperStr('1'));
+console.log(defUpperStr());             
 
-/*
- * #5
- *
- * Створіть функцію weekFn(n), яка приймає номер дня тижня, а повертає його назву.
- * Якщо вводиться рядок, будь-яке дробове число або число поза діапазоном 1...7 - функція повинна повернути null.
- *
- * Наприклад:
- * 1   → 'Понеділок'
- * 2   → 'Вівторок'
- * ...
- * 7   → 'Неділя'
- * 9   → null
- * 1.5 → null
- * '2' → null
- * У реалізації функції обов'язково мають бути використані оператори switch / case / default.
- */
 
-// console.log(weekFn(1))   // 'Понеділок'
-// console.log(weekFn(3))   // 'Середа'
-// console.log(weekFn(7))   // 'Неділя'
-// console.log(weekFn(9))   // null
-// console.log(weekFn(1.5)) // null
-// console.log(weekFn('2')) // null
+console.log(`#4. Створіть функцію evenFn(n), яка приймає параметром число - кількість ітерацій циклу, тобто for 0..n.
+Функція повинна повернути масив, що складається тільки з парних значень, які генеруються в циклі.`);
+
+
+function evenFn(n) {
+    let res = [];
+    for (let i = 1; i <= n; i++) {
+        if (i % 2 === 0) {
+            res.push(i)
+        }
+    }
+    return res;
+}
+
+console.log(evenFn(10)) // [2, 4, 6, 8, 10]
+console.log(evenFn(15)) // [2, 4, 6, 8, 10, 12, 14]
+console.log(evenFn(20)) // [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+
+function weekFn(n) {
+    if (typeof n !== 'number' || !Number.isInteger(n) || n < 1 || n > 7) {
+        return null;
+    }
+
+    switch (n) {
+        case 1:
+            return 'Понеділок';
+        case 2:
+            return 'Вівторок';
+        case 3:
+            return 'Середа';
+        case 4:
+            return 'Четвер';
+        case 5:
+            return "П'ятниця";
+        case 6:
+            return 'Субота';
+        case 7:
+            return 'Неділя';
+        default:
+            return null;
+    }
+}
+
+
+console.log(`#5. Створіть функцію weekFn(n), яка приймає номер дня тижня, а повертає його назву.
+Якщо вводиться рядок, будь-яке дробове число або число поза діапазоном 1...7 - функція повинна повернути null.`);
+
+console.log(weekFn(1))   // 'Понеділок'
+console.log(weekFn(3))   // 'Середа'
+console.log(weekFn(7))   // 'Неділя'
+console.log(weekFn(9))   // null
+console.log(weekFn(1.5)) // null
+console.log(weekFn('2')) // null
 
 /*
  * #6
